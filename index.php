@@ -4,9 +4,7 @@ ini_set('memory_limit', '1G');
 ini_set('display_errors', '1');
 include 'inc/GameConfig.php';
 
-// Change the memory size. It just needs 6 more bytes!
-
-var_dump($test);
+var_dump($test->addPhraseToDisplay('h'));
 
 ?>
 

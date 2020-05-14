@@ -11,8 +11,8 @@ class Phrase {
 
 
   public function __construct($current_phrase) {
-    $this->current_phrase = $current_phrase;
-    $this->selected_letters = $this->setSelectedLetters($current_phrase);
+    $this->current_phrase = strtolower($current_phrase);
+    $this->selected_letters = $this->setSelectedLetters($this->current_phrase);
   }
 
 
@@ -33,13 +33,78 @@ class Phrase {
     $end = 1;
     $letters = str_split($phrase);
     return $letters;
-  }/*
-    while ($end<=strlen($phrase)) {
-      $letter = substr($phrase, $start, $end);
-      $letters[] = $letter;
-      $end++;
-      $start++;
+  }
+
+  public function addPhraseToDisplay($correct = '') {
+
+    $count = 0;
+    $list_items = '';
+
+    while (count($this->selected_letters) > $count) {
+
+    // when no letter is selected
+      if ($this->selected_letters[$count] != ' ') {
+          if ($this->selected_letters[$count] != $correct) {
+          $list_items .= "<li class='hide letter " . $this->selected_letters[$count] . "'>" . $this->selected_letters[$count] . "</li>";
+        } else if ($this->selected_letters[$count] === $correct && $this->checkLetter($correct)) {
+          $list_items .= "<li class='show letter " . $this->selected_letters[$count] . "'>" . $this->selected_letters[$count] . "</li>";
+        }
+      } else {
+          $list_items .= "<li class='hide space'> </li>";
+      }
+
+    $count++;
     }
-    */
+
+    return '<div id="phrase" class="section"><ul>' . $list_items . '</ul></div>';
+  }
+
+  public function checkLetter(String $input) {
+    $letters = str_split($this->current_phrase);
+    $bool = false;
+
+    foreach ($letters as $letter) {
+      if ($input === $letter) {
+
+        $bool = true;
+        break;
+      } else {
+        $bool = false;
+      }
+    }
+    return $bool;
+  }
 
 }
+
+/*
+
+Raw Logic for when a letter is inputted. When the letter is inputted and even if one letter is present, all will go blue.
+// when a letter is selected and is true
+} else if ($show != '' && $this->checkLetter($show) == true) {
+    $list_items .= "<li class='show letter " . $this->selected_letters[$show] . "'>" . $this->selected_letters[$show] . "</li>";
+} /* else if ($show != '' && $this->checkLetter($show) == false) {
+    // the letter is wrong
+    echo 'Wrong choice bro!!';
+    if ($this->selected_letters[$count] != ' ') {
+        $list_items .= "<li class='show letter " . $this->selected_letters[$count] . "'>" . $this->selected_letters[$count] . "</li>";
+    } else {
+        $list_items .= "<li class='hide space'> </li>";
+    }
+} */
+  /*
+  <div id="phrase" class="section">
+      <ul>
+          <li class="hide letter o">o</li>
+          <li class="hide letter w">w</li>
+          <li class="hide space"> </li>
+          <li class="hide letter a">a</li>
+          <li class="hide letter r">r</li>
+          <li class="hide letter e">e</li>
+          <li class="hide space"> </li>
+          <li class="hide letter y">y</li>
+          <li class="hide letter o">o</li>
+          <li class="hide letter u">u</li>
+      </ul>
+  </div>
+  */

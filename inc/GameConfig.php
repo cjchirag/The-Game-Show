@@ -1,6 +1,6 @@
 <?php
 
 include 'inc/Phrase.php';
-$test = new Phrase($all_phrases[mt_rand(0, count($all_phrases))]);
+$test = new Phrase('Chirag');
 // $all_phrases[mt_rand(0, count($all_phrases))]
 ?>
