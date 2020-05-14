@@ -1,4 +1,15 @@
 <!DOCTYPE html>
+<?php
+ini_set('memory_limit', '1G');
+ini_set('display_errors', '1');
+include 'inc/GameConfig.php';
+
+// Change the memory size. It just needs 6 more bytes!
+
+var_dump($test);
+
+?>
+
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -9,7 +20,9 @@
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 	</head>
 
+
 	<body>
+
 		<div class="main-container">
 			<h2 class="header">Phrase Hunter</h2>
             <form action="play.php">
