@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <?php
-ini_set('memory_limit', '1G');
 ini_set('display_errors', '1');
 include 'inc/GameConfig.php';
 
-var_dump($test->addPhraseToDisplay('h'));
+$input = 'c';
+var_dump($test->addPhraseToDisplay($input));
+var_dump($game->displayKeyboard($input));
 
 ?>
 
