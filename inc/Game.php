@@ -1,6 +1,5 @@
 <?php
 
-
 class Game {
   protected $phrase;
   protected $lives;
@@ -108,7 +107,7 @@ class Game {
             $html .= '<div class="keyrow">';
           }
 
-          $html .= "<button class='key' value='$key' name='key-input-$key' type='submit'>$key</button>";
+          $html .= "<button class='key' name='key-input-$key' type='submit'>$key</button>";
 
           if ($key == 'p' || $key == 'l' || $key == 'm') {
             $html .= '</div>';

@@ -2,27 +2,26 @@
 
 <?php
 ini_set('display_errors', '1');
+session_start();
 include 'inc/Phrase.php';
 include 'inc/Game.php';
 $test = new Phrase('Chirag');
 
+//$_SESSION['user_values'] = [];
+
 $game = new Game($test);
 // $all_phrases[mt_rand(0, count($all_phrases))]
-
-$user_vals = [];
-var_dump($user_vals);
-
-$_POST['input'] = [];
 
 $keys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'
         , 'z', 'x', 'c', 'v', 'b', 'n', 'm'];
 
 foreach ($keys as $key) {
   if (isset($_POST["key-input-$key"])) {
-    //$user_vals[] = $key;
-    var_dump("key-input-$key");
+    $_SESSION['user_values'][] = $key;
+    var_dump($_SESSION['user_values']);
   }
 }
+
 
 // var_dump($test->addPhraseToDisplay($input));
 // var_dump($game->displayKeyboard($input));
@@ -44,8 +43,8 @@ foreach ($keys as $key) {
     <div id="banner" class="section">
         <h2 class="header">Phrase Hunter</h2>
         <?php
-        echo $test->addPhraseToDisplay($user_vals);
-        echo $game->displayKeyboard($user_vals);
+        echo $test->addPhraseToDisplay($_SESSION['user_values']);
+        echo $game->displayKeyboard($_SESSION['user_values']);
         ?>
     </div>
 </div>
