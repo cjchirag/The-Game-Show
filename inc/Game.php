@@ -80,7 +80,7 @@ class Game {
   }
 
   // On-screen keyboard form
-  public function displayKeyboard(String $userinput = '') {
+  public function displayKeyboard($userinput = []) {
 
     $keys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'
             , 'z', 'x', 'c', 'v', 'b', 'n', 'm'];
@@ -91,30 +91,90 @@ class Game {
 
     foreach($keys as $key) {
 
+      if (in_array($key, $userinput)) {
+
+        if ($key == 'q' || $key == 'a' || $key == 'z') {
+          $html .= '<div class="keyrow">';
+        }
+
+        $html .= "<button class='key' style='background-color: red' disabled>$key</button>";
+
+        if ($key == 'p' || $key == 'l' || $key == 'm') {
+          $html .= '</div>';
+        }
+
+      } else {
+          if ($key == 'q' || $key == 'a' || $key == 'z') {
+            $html .= '<div class="keyrow">';
+          }
+
+          $html .= "<button class='key' value='$key' name='key-input-$key' type='submit'>$key</button>";
+
+          if ($key == 'p' || $key == 'l' || $key == 'm') {
+            $html .= '</div>';
+          }
+
+        }
+
+      }
+
+
+    $html .= '</div>';
+
+    return $html;
+
+    /*
+    for ($key = 0; $key<count($keys); $key++) {
+
+      if ($keys[$key] == 'q' || $keys[$key] == 'a' || $keys[$key] == 'z') {
+        $html .= '<div class="keyrow">';
+      }
+
+      foreach ($userinput as $input) {
+        if ($input == $keys[$key]) {
+          $html .= "<button class='key' style='background-color: red' disabled>" . $keys[$key] . "</button>";
+
+          if ($keys[$key] == 'p' || $keys[$key] == 'l' || $keys[$key] == 'm') {
+            $html .= '</div>';
+          }
+
+          $key++;
+
+        }
+      }
+
+      $html .= "<input type='hidden' name='key-input-$keys[$key]' value=$keys[$key]>";
+      $html .= "<button type='submit' class='key'>$keys[$key]</button>";
+
+      if ($keys[$key] == 'p' || $keys[$key] == 'l' || $keys[$key] == 'm') {
+        $html .= '</div>';
+      }
+
+    }
+    */
+
+    /*
+    foreach ($keys as $key) {
+
       if ($key == 'q' || $key == 'a' || $key == 'z') {
         $html .= '<div class="keyrow">';
       }
 
-      if ($userinput === '' || $userinput != $key) {
-
-        $html .= "<input type='hidden' name='key-input-$key' value=$key>";
-        $html .= "<button type='submit' class='key'>$key</button>";
-
-      } else if ($userinput === $key) {
-
-        $html .= "<button class='key' style='background-color: red' disabled>$key</button>";
-
+      foreach ($userinput as $input) {
+        if ($input == $key) {
+          $html .= "<button class='key' style='background-color: red' disabled>$key</button>";
+        }
       }
+
+      $html .= "<input type='hidden' name='key-input-$key' value=$key>";
+      $html .= "<button type='submit' class='key'>$key</button>";
 
       if ($key == 'p' || $key == 'l' || $key == 'm') {
         $html .= '</div>';
       }
 
     }
-
-    $html .= '</div>';
-
-    return $html;
+    */
 
       /*
       $html .= '<button class="key">q</button>

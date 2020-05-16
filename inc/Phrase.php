@@ -29,34 +29,38 @@ class Phrase {
   }
 
   public function setSelectedLetters(String $phrase) {
-    $start = 0;
-    $end = 1;
     $letters = str_split($phrase);
     return $letters;
   }
 
-  public function addPhraseToDisplay($correct = '') {
+  public function addPhraseToDisplay($inputs = []) {
 
     $count = 0;
     $list_items = '';
 
-    while (count($this->selected_letters) > $count) {
+    // tp show: $list_items .= "<li class='show letter " . $this->selected_letters[$count] . "'>" . $this->selected_letters[$count] . "</li>";
+    // To hide letter :  $list_items .= "<li class='hide letter " . $this->selected_letters[$count] . "'>" . $this->selected_letters[$count] . "</li>";
+    // To hide space  $list_items .= "<li class='hide space'> </li>";
+    // return '<div id="phrase" class="section"><ul>' . $list_items . '</ul></div>'
 
-    // when no letter is selected
-      if ($this->selected_letters[$count] != ' ') {
-          if ($this->selected_letters[$count] != $correct) {
-          $list_items .= "<li class='hide letter " . $this->selected_letters[$count] . "'>" . $this->selected_letters[$count] . "</li>";
-        } else if ($this->selected_letters[$count] === $correct && $this->checkLetter($correct)) {
-          $list_items .= "<li class='show letter " . $this->selected_letters[$count] . "'>" . $this->selected_letters[$count] . "</li>";
-        }
+    foreach ($this->selected_letters as $correct_value) {
+
+      if ($correct_value === ' ') {
+        $list_items .= "<li class='hide space'> </li>";
       } else {
-          $list_items .= "<li class='hide space'> </li>";
+
+            if (in_array($correct_value, $inputs)) {
+            $list_items .= "<li class='show letter " . $this->selected_letters[$count] . "'>" . $correct_value . "</li>";
+          } else {
+            $list_items .= "<li class='hide letter " . $this->selected_letters[$count] . "'>" . $correct_value . "</li>";
+          }
+
       }
 
-    $count++;
     }
 
     return '<div id="phrase" class="section"><ul>' . $list_items . '</ul></div>';
+
   }
 
   public function checkLetter(String $input) {

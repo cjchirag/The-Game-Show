@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <?php
 ini_set('display_errors', '1');
-include 'inc/GameConfig.php';
-
-$input = 'c';
-var_dump($test->addPhraseToDisplay($input));
-var_dump($game->displayKeyboard($input));
-
 ?>
 
 <html lang="en">
