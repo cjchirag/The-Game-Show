@@ -1,8 +1,12 @@
 <?php
 
-$all_phrases = ['Only time will tell', 'In the nick of time', 'Lost track of time', 'Lasted an eternity',
-                'Just a matter of time', 'A waste of time', 'Time flies', 'In a jiffy', 'The time of my life',
-                'At the speed of light'];
+$all_phrases = ['chirag', 'krish', 'pooja'];
+
+                /*
+                'Only time will tell', 'In the nick of time', 'Lost track of time', 'Lasted an eternity',
+                                'Just a matter of time', 'A waste of time', 'Time flies', 'In a jiffy', 'The time of my life',
+                                'At the speed of light'
+                */
 
 
 class Phrase {

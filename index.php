@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <?php
 ini_set('display_errors', '1');
+
+if (isset($_POST['new-game'])) {
+	session_start();
+	$_SESSION['new-game'] = true;
+	header('location: play.php');
+	exit();
+}
+
 ?>
 
 <html lang="en">
@@ -18,8 +26,8 @@ ini_set('display_errors', '1');
 
 		<div class="main-container">
 			<h2 class="header">Phrase Hunter</h2>
-            <form action="play.php">
-                <input id="btn__reset" type="submit" value="Start Game" />
+            <form action="index.php" method='POST'>
+              <input id="btn__reset" type="submit" name='new-game' value="Start Game" />
             </form>
 		</div>
 
