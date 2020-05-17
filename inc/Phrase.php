@@ -84,35 +84,3 @@ class Phrase {
   }
 
 }
-
-/*
-
-Raw Logic for when a letter is inputted. When the letter is inputted and even if one letter is present, all will go blue.
-// when a letter is selected and is true
-} else if ($show != '' && $this->checkLetter($show) == true) {
-    $list_items .= "<li class='show letter " . $this->selected_letters[$show] . "'>" . $this->selected_letters[$show] . "</li>";
-} /* else if ($show != '' && $this->checkLetter($show) == false) {
-    // the letter is wrong
-    echo 'Wrong choice bro!!';
-    if ($this->selected_letters[$count] != ' ') {
-        $list_items .= "<li class='show letter " . $this->selected_letters[$count] . "'>" . $this->selected_letters[$count] . "</li>";
-    } else {
-        $list_items .= "<li class='hide space'> </li>";
-    }
-} */
-  /*
-  <div id="phrase" class="section">
-      <ul>
-          <li class="hide letter o">o</li>
-          <li class="hide letter w">w</li>
-          <li class="hide space"> </li>
-          <li class="hide letter a">a</li>
-          <li class="hide letter r">r</li>
-          <li class="hide letter e">e</li>
-          <li class="hide space"> </li>
-          <li class="hide letter y">y</li>
-          <li class="hide letter o">o</li>
-          <li class="hide letter u">u</li>
-      </ul>
-  </div>
-  */

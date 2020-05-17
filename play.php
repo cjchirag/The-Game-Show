@@ -7,8 +7,6 @@ include 'inc/Game.php';
 
 session_start();
 
-//$_SESSION['user_values'] = [];
-
 if ($_SESSION['new-game'] === true) {
   $_SESSION['user_values'] = [];
   $phrase = new Phrase ($all_phrases[mt_rand(0, count($all_phrases)-1)]);
@@ -43,9 +41,6 @@ if ($_SESSION['user_values'] != []) {
     $_SESSION['game']->lives--;
   }
 }
-
-// var_dump($test->addPhraseToDisplay($input));
-// var_dump($game->displayKeyboard($input));
 
 ?>
 
