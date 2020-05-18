@@ -56,7 +56,7 @@ $keys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', '
 
 foreach ($keys as $key) {
   if (isset($_POST["key-input-$key"])) {
-    $_SESSION['user_values'][] = $key;
+    $_SESSION['user_values'][] = strtolower($key);
   }
 }
 

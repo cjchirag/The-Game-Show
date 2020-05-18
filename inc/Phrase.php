@@ -1,6 +1,6 @@
 <?php
 
-$all_phrases = ['chirag', 'krish', 'pooja'];
+// A collection to store phrases.
 
                 /*
                 'Only time will tell', 'In the nick of time', 'Lost track of time', 'Lasted an eternity',
@@ -8,24 +8,24 @@ $all_phrases = ['chirag', 'krish', 'pooja'];
                                 'At the speed of light'
                 */
 
+$all_phrases = ['Only time will tell', 'Time flies', 'In a jiffy'];
 
 class Phrase {
   public $current_phrase;
   public $selected_letters;
 
 
-  public function __construct($current_phrase) {
-    $this->current_phrase = strtolower($current_phrase);
+  public function __construct($current_phrase = '') {
+
+    $all_phrases = ['Only time will tell', 'Time flies', 'In a jiffy'];
+
+    if ($current_phrase === '') {
+        $this->current_phrase = strtolower($current_phrase);
+    } else {
+        // if phrase is not passed, this function randomly sets the phrase from the collection of phrases.
+        $this->current_phrase = strtolower($all_phrases[mt_rand(0, count($all_phrases)-1)]);
+    }
     $this->selected_letters = $this->setSelectedLetters($this->current_phrase);
-  }
-
-
-  public function getCurrentPhrase() {
-    return $this->current_phrase;
-  }
-
-  public function setCurrentPhrase() {
-    $this->current_phrase = $all_phrases[mt_rand(0, count($all_phrases))];
   }
 
   public function getSelectedLetters() {

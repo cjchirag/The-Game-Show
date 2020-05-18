@@ -24,12 +24,20 @@ class Game {
     $filter_input = [];
     $bool = false;
 
+    $correct_without_space = [];
+
+    foreach ($this->getPhrase()->selected_letters as $selected) {
+      if ($selected != ' ') {
+        $correct_without_space[] = $selected;
+      }
+    }
+
     // to filter the input where the character exists
     foreach ($playerInput as $input) {
-      if (in_array($input, $this->getPhrase()->selected_letters)) {
+      if (in_array($input, $correct_without_space)) {
 
         // array count values returns the frequency of an element in the array.
-        $checkForRepeat = array_count_values($this->getPhrase()->selected_letters)[$input];
+        $checkForRepeat = array_count_values($correct_without_space)[$input];
 
         // A loop and logic condition to add characters which repeat in a phrase based on their frequency.
         if ($checkForRepeat > 1) {
@@ -46,9 +54,9 @@ class Game {
 
     // to check if the length of the correct value and the user input are the same.
     // logic to check if every filtered character exists in the array.
-    if (count($filter_input) === count($this->getPhrase()->selected_letters)) {
+    if (count($filter_input) === count($correct_without_space)) {
       foreach ($filter_input as $filtered) {
-        if (in_array($filtered, $this->getPhrase()->selected_letters)) {
+        if (in_array($filtered, $correct_without_space)) {
           $bool = true;
         } else {
           return false;
