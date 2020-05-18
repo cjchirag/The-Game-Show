@@ -2,6 +2,7 @@
 <?php
 ini_set('display_errors', '1');
 
+// Here the user decides to start a new game!
 if (isset($_POST['new-game'])) {
 	session_start();
 	$_SESSION['new-game'] = true;

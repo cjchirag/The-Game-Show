@@ -18,8 +18,9 @@ class Game {
   }
 
 
-  // A function that checks if the player has selected all the letters.
+  // A function that checks if the player has selected all the correct letters in their input.
   public function checkForWin($playerInput) {
+    // filter_input stores all the input values which are correct values.
     $filter_input = [];
     $bool = false;
 
@@ -27,18 +28,24 @@ class Game {
     foreach ($playerInput as $input) {
       if (in_array($input, $this->getPhrase()->selected_letters)) {
 
+        // array count values returns the frequency of an element in the array.
         $checkForRepeat = array_count_values($this->getPhrase()->selected_letters)[$input];
 
+        // A loop and logic condition to add characters which repeat in a phrase based on their frequency.
         if ($checkForRepeat > 1) {
+          // if the character repeats more than once, add to the array based on its frequency.
           for ($i=1; $i<=$checkForRepeat; $i++) {
             $filter_input[] = $input;
           }
         } else {
+          // if it doesn't repeat -> just add the character once.
           $filter_input[] = $input;
         }
       }
     }
 
+    // to check if the length of the correct value and the user input are the same.
+    // logic to check if every filtered character exists in the array.
     if (count($filter_input) === count($this->getPhrase()->selected_letters)) {
       foreach ($filter_input as $filtered) {
         if (in_array($filtered, $this->getPhrase()->selected_letters)) {
@@ -74,11 +81,11 @@ class Game {
   $message = '';
 
   if ($playerInput === [] || $this->checkForLose() === false && $this->checkForWin($playerInput) == false) {
-
+      // Game not over yet!
       return false;
 
   } else {
-
+    // Game over!! Evaluate whether they won or lost!
     if ($this->checkForWin($playerInput) === true && $this->checkForLose() === false) {
 
       $message = 'Congratulations on guessing:' . " " . $this->phrase->current_phrase;
@@ -107,7 +114,7 @@ class Game {
     $html .= "<div id='qwerty' class='section'>";
 
     foreach($keys as $key) {
-
+      // if the key is pressed -> disable the button.
       if (in_array($key, $userinput)) {
 
         if ($key == 'q' || $key == 'a' || $key == 'z') {
@@ -119,7 +126,7 @@ class Game {
         if ($key == 'p' || $key == 'l' || $key == 'm') {
           $html .= '</div>';
         }
-
+      // if the key is not pressed -> do not disable the button.
       } else {
           if ($key == 'q' || $key == 'a' || $key == 'z') {
             $html .= '<div class="keyrow">';
@@ -156,9 +163,6 @@ class Game {
       }
       $star++;
     }
-//  else {
-  //  $html .= '<li class="tries"><img src="images/lostHeart.png" height="35px" widght="30px"></li>';
-//    }
 
   $html .= '</ol></div>';
   return $html;
