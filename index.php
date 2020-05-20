@@ -4,19 +4,16 @@ ini_set('display_errors', '1');
 
 /*
 
-Hey!! Thanks so much reviewing my project. How are you?
- I hope you and yours are safe and sound :)
+Hey!! Thanks so much reviewing my project.
 
 Here's my success criteria notes:
 
 At the moment, these are the three phrases set for test:
-	$all_phrases = ['Only time will tell', 'Time flies', 'In a jiffy'];
+	$all_phrases = ['You are loved', 'You are the best', 'You got this'];
 You can change them in Phrase.php.
 
-1. Class phrase includes the properties. The constructor accepts current_phrase... though I added a function
-		which sets the selected_letters based on the current_phrase input.
-		if a phrase string is not passed, setCurrentPhrase function sets the phrase randomly from the collection
-		of phrase.
+1. Class phrase includes the properties. The constructor accepts phrase and selected...
+		if a phrase string is not passed, it sets the phrase randomly from the collection.
 
 2. Phrase methods work as expected. When the input is correct, the value fills the specific box.
 		CheckLetter works as expected to check if the input is correct.
@@ -32,7 +29,7 @@ You can change them in Phrase.php.
 	Appropriate win or loss message displayed based on the methods logic in gameOver.
 	Both reset and home button added which reset values allowing the user to play again.
 
-7. HTML and CSS used as given!
+7. HTML and CSS used as given
 
 Thanks again!! Take care!
 

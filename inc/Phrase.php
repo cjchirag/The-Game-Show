@@ -2,12 +2,6 @@
 
 // A collection to store phrases.
 
-                /*
-                'Only time will tell', 'In the nick of time', 'Lost track of time', 'Lasted an eternity',
-                                'Just a matter of time', 'A waste of time', 'Time flies', 'In a jiffy', 'The time of my life',
-                                'At the speed of light'
-                */
-
 $all_phrases = ['You are loved', 'You are the best', 'You got this'];
 
 class Phrase {
