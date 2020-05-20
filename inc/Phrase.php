@@ -8,33 +8,26 @@
                                 'At the speed of light'
                 */
 
-$all_phrases = ['Only time will tell', 'Time flies', 'In a jiffy'];
+$all_phrases = ['You are loved', 'You are the best', 'You got this'];
 
 class Phrase {
-  public $current_phrase;
-  public $selected_letters;
+  public $phrase;
+  public $selected;
 
 
-  public function __construct($current_phrase = '') {
+  public function __construct($phrase = '', $selected = []) {
 
-    $all_phrases = ['Only time will tell', 'Time flies', 'In a jiffy'];
+    $all_phrases = ['You are loved', 'You are the best', 'You got this'];
 
-    if ($current_phrase === '') {
-        $this->current_phrase = strtolower($current_phrase);
+    if ($phrase === '') {
+        $this->phrase = strtolower($phrase);
     } else {
         // if phrase is not passed, this function randomly sets the phrase from the collection of phrases.
-        $this->current_phrase = strtolower($all_phrases[mt_rand(0, count($all_phrases)-1)]);
+        $this->phrase = strtolower($all_phrases[mt_rand(0, count($all_phrases)-1)]);
     }
-    $this->selected_letters = $this->setSelectedLetters($this->current_phrase);
-  }
 
-  public function getSelectedLetters() {
-    return $this->selected_letters;
-  }
+    $this->selected_letters = $selected;
 
-  public function setSelectedLetters(String $phrase) {
-    $letters = str_split($phrase);
-    return $letters;
   }
 
   public function addPhraseToDisplay($inputs = []) {
@@ -47,16 +40,18 @@ class Phrase {
     // To hide space  $list_items .= "<li class='hide space'> </li>";
     // return '<div id="phrase" class="section"><ul>' . $list_items . '</ul></div>'
 
-    foreach ($this->selected_letters as $correct_value) {
+    $letters = str_split($this->phrase);
+
+    foreach ($letters as $correct_value) {
 
       if ($correct_value === ' ') {
         $list_items .= "<li class='hide space'> </li>";
       } else {
 
             if (in_array($correct_value, $inputs)) {
-            $list_items .= "<li class='show letter " . $this->selected_letters[$count] . "'>" . $correct_value . "</li>";
+            $list_items .= "<li class='show letter " . $correct_value . "'>" . $correct_value . "</li>";
           } else {
-            $list_items .= "<li class='hide letter " . $this->selected_letters[$count] . "'>" . $correct_value . "</li>";
+            $list_items .= "<li class='hide letter " . $correct_value . "'>" . $correct_value . "</li>";
           }
 
       }
@@ -68,7 +63,7 @@ class Phrase {
   }
 
   public function checkLetter(String $input) {
-    $letters = str_split($this->current_phrase);
+    $letters = str_split($this->phrase);
     $bool = false;
 
     foreach ($letters as $letter) {

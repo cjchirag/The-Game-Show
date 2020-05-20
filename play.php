@@ -57,6 +57,7 @@ $keys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', '
 foreach ($keys as $key) {
   if (isset($_POST["key-input-$key"])) {
     $_SESSION['user_values'][] = strtolower($key);
+    $_SESSION['game']->getPhrase()->selected = $_SESSION['user_values'];
   }
 }
 
@@ -99,7 +100,7 @@ if ($_SESSION['user_values'] != []) {
         // All the display methods are called here since the game is not over.
 
           echo $_SESSION['game']->displayScore($_SESSION['game']->lives);
-          echo $_SESSION['phrase']->addPhraseToDisplay($_SESSION['user_values']);
+          echo $_SESSION['game']->getPhrase()->addPhraseToDisplay($_SESSION['user_values']);
           echo $_SESSION['game']->displayKeyboard($_SESSION['user_values']);
 
         }

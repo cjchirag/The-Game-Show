@@ -9,6 +9,7 @@ class Game {
       $this->lives = 5;
   }
 
+
   public function getPhrase () {
     return $this->phrase;
   }
@@ -26,9 +27,11 @@ class Game {
 
     $correct_without_space = [];
 
-    foreach ($this->getPhrase()->selected_letters as $selected) {
-      if ($selected != ' ') {
-        $correct_without_space[] = $selected;
+    $letters = str_split($this->phrase->phrase);
+
+    foreach ($letters as $letter) {
+      if ($letter != ' ') {
+        $correct_without_space[] = $letter;
       }
     }
 
@@ -96,12 +99,12 @@ class Game {
     // Game over!! Evaluate whether they won or lost!
     if ($this->checkForWin($playerInput) === true && $this->checkForLose() === false) {
 
-      $message = 'Congratulations on guessing:' . " " . $this->phrase->current_phrase;
+      $message = 'Congratulations on guessing:' . " " . $this->phrase->phrase;
       return $message;
 
     } else if ($this->checkForWin($playerInput) === false || $this->checkForLose() === true) {
 
-      $message = 'The phrase was:' . " " . $this->phrase->current_phrase . ', Better luck next time!';
+      $message = 'The phrase was:' . " " . $this->phrase->phrase . ', Better luck next time!';
       return $message;
 
     }
@@ -129,7 +132,13 @@ class Game {
           $html .= '<div class="keyrow">';
         }
 
-        $html .= "<button class='key' style='background-color: red' disabled>$key</button>";
+        $letters = str_split($this->phrase->phrase);
+
+        if (in_array($key, $letters)) {
+            $html .= "<button class='chosen' disabled>$key</button>";
+        } else {
+            $html .= "<button class='wrong' disabled>$key</button>";
+        }
 
         if ($key == 'p' || $key == 'l' || $key == 'm') {
           $html .= '</div>';
